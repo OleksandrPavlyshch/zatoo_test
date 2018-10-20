@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Channel from './components/Channel/Channel.js';
+import json from './data/channels.json';
 
+let data = json.channels;
+
+
+var result = data;
+console.log(data);
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {data.map(function(el, i) {
+          return <Channel key={i} channel={el}/>;
+        })}
       </div>
     );
   }
