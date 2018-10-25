@@ -67,9 +67,13 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<div className="container">
+				<div className="container-fluid pt-4">
 					<div className="row">
-						<div className="col-4"></div>
+						<div className="col-4">
+							<div className="row">
+								<h1 className="col-12 mb-3">Favorites</h1>
+							</div>
+						</div>
 						<div className="col-8">
 							<div className="row">
 								<h1 className="col-12 mb-3">Channels</h1>
