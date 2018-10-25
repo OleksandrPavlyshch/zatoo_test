@@ -72,7 +72,7 @@ class App extends Component {
 						<div className="col-4"></div>
 						<div className="col-8">
 							<div className="row">
-								<h1>Channels</h1>
+								<h1 className="col-12 mb-3">Channels</h1>
 								<Channels channels={channelsArray} />
 							</div>
 						</div>
