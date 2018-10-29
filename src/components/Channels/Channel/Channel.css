@@ -2,5 +2,18 @@
 	border: 1px solid #000;
 	/*margin: 10px;*/
 	font-size: 16px;
+	position: relative;
 	padding: 5px;
+}
+.Channel_number {
+	left: 2.67rem;
+	color: #717171;
+	background-color: #1a1a1a;
+	min-width: 4.27rem;
+	height: 3.33rem;
+	line-height: 3.33rem;
+	border-radius: .4rem;
+	text-align: center;
+	margin-right: .5rem;
+	padding: .4rem;
 }
