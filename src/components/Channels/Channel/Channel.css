@@ -18,15 +18,12 @@
 
 .Channel_number {
 	display: inline-block;
-	left: 2.67rem;
 	color: #717171;
 	background-color: #1a1a1a;
 	min-width: 4.27rem;
 	height: 3.33rem;
-	line-height: 3.33rem;
 	border-radius: .4rem;
 	text-align: center;
-	margin-right: .5rem;
 	padding: .4rem;
 }
 
@@ -35,9 +32,21 @@
 	margin: 0 1rem;
 }
 
-.Channel_title {
+.Channel_title,
+.Channel_level {
 	color: #ebebeb;
 	text-transform: uppercase;
 	font-weight: 700;
 	font-size: 1.9rem;
+	margin: 0 1rem;
+}
+
+.Channel_level {
+	display: inline-block;
+	color: #717171;
+	background-color: #1a1a1a;
+	height: 3.33rem;
+	border-radius: .4rem;
+	padding: .4rem .6rem;
+	text-align: center;
 }
