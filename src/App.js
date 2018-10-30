@@ -68,7 +68,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeChannel: channelsArray[0].id
+			focusedChannel: channelsArray[0].id
 		}
 	}
 
@@ -86,7 +86,7 @@ class App extends Component {
 						<div className="col-8 px-5">
 							<div className="row m-0">
 								<h1 className="col-12 mb-3">Channels</h1>
-								<Channels channels={channelsArray} activeChannel={this.state.activeChannel} />
+								<Channels channels={channelsArray} focusedChannel={this.state.focusedChannel} />
 							</div>
 						</div>
 					</div>
