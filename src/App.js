@@ -64,20 +64,29 @@ const channelsArray = Object.keys(chanels).map(key => chanels[key]);
 console.log(channelsArray.length);
 console.log(data.length);
 class App extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			activeChannel: channelsArray[0].id
+		}
+	}
+
+
 	render() {
 		return (
 			<div className="App">
 				<div className="container-fluid pt-4">
 					<div className="row">
-						<div className="col-4">
-							<div className="row">
+						<div className="col-4 px-5">
+							<div className="row m-0">
 								<h1 className="col-12 mb-3">Favorites</h1>
 							</div>
 						</div>
-						<div className="col-8">
-							<div className="row">
+						<div className="col-8 px-5">
+							<div className="row m-0">
 								<h1 className="col-12 mb-3">Channels</h1>
-								<Channels channels={channelsArray} />
+								<Channels channels={channelsArray} activeChannel={this.state.activeChannel} />
 							</div>
 						</div>
 					</div>

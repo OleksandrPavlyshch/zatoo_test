@@ -41,12 +41,22 @@
 	margin: 0 1rem;
 }
 
-.Channel_level {
+.Channel_favorite {
 	display: inline-block;
-	color: #717171;
-	background-color: #1a1a1a;
-	height: 3.33rem;
-	border-radius: .4rem;
-	padding: .4rem .6rem;
-	text-align: center;
+	margin: 0 .5rem;
+	min-width: 1.5rem;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: 100% auto;
+	background-image: url('data:image/svg+xml,\
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23ffffff">\
+		<path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/>\
+		</svg>');
+}
+.Channel_favorite.active {
+	background-image: url('data:image/svg+xml,\
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23ffffff">\
+		<path d="M0 0h24v24H0z" fill="none"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>\
+		</svg>');
 }
