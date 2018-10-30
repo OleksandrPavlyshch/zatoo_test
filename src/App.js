@@ -59,19 +59,53 @@ let chanels = data.reduce((acc, channel) => {
 
 const channelsArray = Object.keys(chanels).map(key => chanels[key]);
 
+// document.addEventListener('keydown', (event) => {
+// 	const keyName = event.key;
+
+// 	console.log(event.keyCode);
+// 	console.log('keypress event\n\n' + 'key: ' + keyName);
+// 	if(event.keyCode){
+
+// 	}
+// });
+
+
 
 
 console.log(channelsArray.length);
 console.log(data.length);
+
 class App extends Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			focusedChannel: channelsArray[0].id
+	state = {
+		focusedChannel: channelsArray[0].id,
+		focusedIndex: 0
+	};
+
+	handleKey (e){
+		console.log(this.state)
+
+
+		if(e.keyCode == 40) {
+			let index = this.state.focusedIndex +2;
+			this.setState({
+				focusedChannel: channelsArray[index].id,
+				focusedIndex: index
+			});
 		}
+
 	}
 
+	componentDidMount() {
+		document.addEventListener('keydown', (event) => {
+			const keyName = event.key;
+
+			console.log(event.keyCode);
+			console.log('keypress event\n\n' + 'key: ' + keyName);
+			
+			this.handleKey(event);
+		});
+	}
 
 	render() {
 		return (
