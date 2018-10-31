@@ -59,15 +59,9 @@ let chanels = data.reduce((acc, channel) => {
 
 const channelsArray = Object.keys(chanels).map(key => chanels[key]);
 
-// document.addEventListener('keydown', (event) => {
-// 	const keyName = event.key;
-
-// 	console.log(event.keyCode);
-// 	console.log('keypress event\n\n' + 'key: ' + keyName);
-// 	if(event.keyCode){
-
-// 	}
-// });
+let isArrayEnd = (arr, index) => {
+	return index < 0 || index >= arr.length;
+};
 
 
 
@@ -78,16 +72,21 @@ console.log(data.length);
 class App extends Component {
 
 	state = {
-		focusedChannel: channelsArray[0].id,
 		focusedIndex: 0
 	};
 
 	handleKey (e){
-		console.log(this.state)
 
+		if(e.keyCode === 40 && !isArrayEnd(channelsArray, this.state.focusedIndex + 2)) {
+			let index = this.state.focusedIndex + 2;
+			this.setState({
+				focusedChannel: channelsArray[index].id,
+				focusedIndex: index
+			});
+		}
 
-		if(e.keyCode == 40) {
-			let index = this.state.focusedIndex +2;
+		if(e.keyCode === 38 && !isArrayEnd(channelsArray, this.state.focusedIndex - 2)) {
+			let index = this.state.focusedIndex - 2;
 			this.setState({
 				focusedChannel: channelsArray[index].id,
 				focusedIndex: index
@@ -120,7 +119,7 @@ class App extends Component {
 						<div className="col-8 px-5">
 							<div className="row m-0">
 								<h1 className="col-12 mb-3">Channels</h1>
-								<Channels channels={channelsArray} focusedChannel={this.state.focusedChannel} />
+								<Channels channels={channelsArray} focusedIndex={this.state.focusedIndex} />
 							</div>
 						</div>
 					</div>
