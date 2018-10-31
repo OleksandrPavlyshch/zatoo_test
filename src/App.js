@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Channels from './components/Channels/Channels';
+import Favorites from './components/Favorites/Favorites';
 import json from './data/channels.json';
 
 let data = json.channels;
@@ -72,7 +73,8 @@ console.log(data.length);
 class App extends Component {
 
 	state = {
-		focusedIndex: 0
+		focusedIndex: 0,
+		favorites: []
 	};
 
 	handleKey (e){
@@ -106,16 +108,23 @@ class App extends Component {
 			});
 		}
 
+		if(e.keyCode === 13) {
+			console.log('Press ENTER');
+			console.log(this.state);
+			console.log(channelsArray[this.state.focusedIndex]);
+			let favorites = [...this.state.favorites, channelsArray[this.state.focusedIndex]];
+			console.log(favorites);
+
+			this.setState({
+				favorites: favorites
+			});
+		}
+
 
 	}
 
 	componentDidMount() {
 		document.addEventListener('keydown', (event) => {
-			const keyName = event.key;
-
-			console.log(event.keyCode);
-			console.log('keypress event\n\n' + 'key: ' + keyName);
-			
 			this.handleKey(event);
 		});
 	}
@@ -128,6 +137,7 @@ class App extends Component {
 						<div className="col-4 px-5">
 							<div className="row m-0">
 								<h1 className="col-12 mb-3">Favorites</h1>
+								<Favorites favorites={this.state.favorites} />
 							</div>
 						</div>
 						<div className="col-8 px-5">

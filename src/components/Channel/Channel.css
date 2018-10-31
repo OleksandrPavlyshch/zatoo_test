@@ -45,6 +45,11 @@
 	font-size: 1.9rem;
 	margin: 0 1rem;
 }
+.Channel_level {
+	background-color: #1a1a1a;
+	padding: .4rem .6rem;
+	display: inline-block;
+}
 
 .Channel_favorite {
 	display: inline-block;
