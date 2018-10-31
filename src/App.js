@@ -88,10 +88,24 @@ class App extends Component {
 		if(e.keyCode === 38 && !isArrayEnd(channelsArray, this.state.focusedIndex - 2)) {
 			let index = this.state.focusedIndex - 2;
 			this.setState({
-				focusedChannel: channelsArray[index].id,
 				focusedIndex: index
 			});
 		}
+
+		if(e.keyCode === 37 && !isArrayEnd(channelsArray, this.state.focusedIndex - 1)) {
+			let index = this.state.focusedIndex -1;
+			this.setState({
+				focusedIndex: index
+			});
+		}
+
+		if(e.keyCode === 39 && !isArrayEnd(channelsArray, this.state.focusedIndex + 1)) {
+			let index = this.state.focusedIndex + 1;
+			this.setState({
+				focusedIndex: index
+			});
+		}
+
 
 	}
 
