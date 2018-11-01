@@ -74,7 +74,8 @@ class App extends Component {
 
 	state = {
 		focusedIndex: 0,
-		favorites: []
+		favorites: [],
+		channelsArray: channelsArray
 	};
 
 	handleKey (e){
@@ -109,14 +110,11 @@ class App extends Component {
 		}
 
 		if(e.keyCode === 13) {
-			console.log('Press ENTER');
-			console.log(this.state);
-			console.log(channelsArray[this.state.focusedIndex]);
-			let favorites = [...this.state.favorites, channelsArray[this.state.focusedIndex]];
-			console.log(favorites);
+			let favorites = [...this.state.favorites, this.state.channelsArray[this.state.focusedIndex]];
+			this.state.channelsArray[this.state.focusedIndex].isSelected = true;
 
 			this.setState({
-				favorites: favorites
+				favorites: favorites,
 			});
 		}
 
@@ -143,7 +141,7 @@ class App extends Component {
 						<div className="col-8 px-5">
 							<div className="row m-0">
 								<h1 className="col-12 mb-3">Channels</h1>
-								<Channels channels={channelsArray} focusedIndex={this.state.focusedIndex} />
+								<Channels channels={this.state.channelsArray} focusedIndex={this.state.focusedIndex} />
 							</div>
 						</div>
 					</div>
