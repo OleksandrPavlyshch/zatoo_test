@@ -65,16 +65,11 @@ let isArrayEnd = (arr, index) => {
 };
 
 
-
-
-console.log(channelsArray.length);
-console.log(data.length);
-
 class App extends Component {
 
 	state = {
 		focusedIndex: 0,
-		favorites: [],
+		favorites: new Set(),
 		channelsArray: channelsArray
 	};
 
@@ -110,8 +105,16 @@ class App extends Component {
 		}
 
 		if(e.keyCode === 13) {
-			let favorites = [...this.state.favorites, this.state.channelsArray[this.state.focusedIndex]];
-			this.state.channelsArray[this.state.focusedIndex].isSelected = true;
+			let favorites = this.state.favorites;
+
+			if(this.state.channelsArray[this.state.focusedIndex].isSelected) {
+				favorites.delete(this.state.channelsArray[this.state.focusedIndex]);
+				delete this.state.channelsArray[this.state.focusedIndex].isSelected;
+
+			} else{
+				favorites = favorites.add(this.state.channelsArray[this.state.focusedIndex]);
+				this.state.channelsArray[this.state.focusedIndex].isSelected = true;
+			}
 
 			this.setState({
 				favorites: favorites,
