@@ -65,31 +65,33 @@ class App extends Component {
 
 
 	handleKey(e) {
+		let channels = this.state.channels,
+			focusedIndex = this.state.focusedIndex;
 
-		if (e.keyCode === ARROW_DOWN && !isArrayEnd(this.state.channels, this.state.focusedIndex + 2)) {
-			let index = this.state.focusedIndex + 2;
+		if (e.keyCode === ARROW_DOWN && !isArrayEnd(channels, focusedIndex + 2)) {
+			let index = focusedIndex + 2;
 			this.setState({
-				focusedChannel: this.state.channels[index].id,
+				focusedChannel: channels[index].id,
 				focusedIndex: index
 			});
 		}
 
-		if (e.keyCode === ARROW_UP && !isArrayEnd(this.state.channels, this.state.focusedIndex - 2)) {
-			let index = this.state.focusedIndex - 2;
-			this.setState({
-				focusedIndex: index
-			});
-		}
-
-		if (e.keyCode === ARROW_LEFT && !isArrayEnd(this.state.channels, this.state.focusedIndex - 1)) {
-			let index = this.state.focusedIndex - 1;
+		if (e.keyCode === ARROW_UP && !isArrayEnd(channels, focusedIndex - 2)) {
+			let index = focusedIndex - 2;
 			this.setState({
 				focusedIndex: index
 			});
 		}
 
-		if (e.keyCode === ARROW_RIGHT && !isArrayEnd(this.state.channels, this.state.focusedIndex + 1)) {
-			let index = this.state.focusedIndex + 1;
+		if (e.keyCode === ARROW_LEFT && !isArrayEnd(channels, focusedIndex - 1)) {
+			let index = focusedIndex - 1;
+			this.setState({
+				focusedIndex: index
+			});
+		}
+
+		if (e.keyCode === ARROW_RIGHT && !isArrayEnd(channels, focusedIndex + 1)) {
+			let index = focusedIndex + 1;
 			this.setState({
 				focusedIndex: index
 			});
@@ -98,13 +100,13 @@ class App extends Component {
 		if (e.keyCode === ENTER) {
 			let favorites = this.state.favorites;
 
-			if (this.state.channels[this.state.focusedIndex].isSelected) {
-				favorites.delete(this.state.channels[this.state.focusedIndex]);
-				delete this.state.channels[this.state.focusedIndex].isSelected;
+			if (channels[focusedIndex].isSelected) {
+				favorites.delete(channels[focusedIndex]);
+				delete channels[focusedIndex].isSelected;
 
 			} else {
-				favorites = favorites.add(this.state.channels[this.state.focusedIndex]);
-				this.state.channels[this.state.focusedIndex].isSelected = true;
+				favorites = favorites.add(channels[focusedIndex]);
+				channels[focusedIndex].isSelected = true;
 			}
 
 			this.setState({
