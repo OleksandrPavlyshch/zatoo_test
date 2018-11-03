@@ -4,14 +4,9 @@ import Channels from './components/Channels/Channels';
 import Favorites from './components/Favorites/Favorites';
 import channelsApi from './api/channels';
 import { isArrayEnd } from './utils/utils';
+import keyCodes from './utils/keyCodes';
 
-// let data = channelsApi.channels;
-
-
-
-
-
-
+const { ARROW_DOWN, ARROW_UP, ARROW_RIGHT, ARROW_LEFT, ENTER } = keyCodes;
 
 class App extends Component {
 
@@ -71,7 +66,7 @@ class App extends Component {
 
 	handleKey(e) {
 
-		if (e.keyCode === 40 && !isArrayEnd(this.state.channels, this.state.focusedIndex + 2)) {
+		if (e.keyCode === ARROW_DOWN && !isArrayEnd(this.state.channels, this.state.focusedIndex + 2)) {
 			let index = this.state.focusedIndex + 2;
 			this.setState({
 				focusedChannel: this.state.channels[index].id,
@@ -79,28 +74,28 @@ class App extends Component {
 			});
 		}
 
-		if (e.keyCode === 38 && !isArrayEnd(this.state.channels, this.state.focusedIndex - 2)) {
+		if (e.keyCode === ARROW_UP && !isArrayEnd(this.state.channels, this.state.focusedIndex - 2)) {
 			let index = this.state.focusedIndex - 2;
 			this.setState({
 				focusedIndex: index
 			});
 		}
 
-		if (e.keyCode === 37 && !isArrayEnd(this.state.channels, this.state.focusedIndex - 1)) {
+		if (e.keyCode === ARROW_LEFT && !isArrayEnd(this.state.channels, this.state.focusedIndex - 1)) {
 			let index = this.state.focusedIndex - 1;
 			this.setState({
 				focusedIndex: index
 			});
 		}
 
-		if (e.keyCode === 39 && !isArrayEnd(this.state.channels, this.state.focusedIndex + 1)) {
+		if (e.keyCode === ARROW_RIGHT && !isArrayEnd(this.state.channels, this.state.focusedIndex + 1)) {
 			let index = this.state.focusedIndex + 1;
 			this.setState({
 				focusedIndex: index
 			});
 		}
 
-		if (e.keyCode === 13) {
+		if (e.keyCode === ENTER) {
 			let favorites = this.state.favorites;
 
 			if (this.state.channels[this.state.focusedIndex].isSelected) {
