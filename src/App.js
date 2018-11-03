@@ -6,18 +6,18 @@ import json from './data/channels.json';
 
 let data = json.channels;
 
-let isBetter = (qa1, qa2) => {
+let isBetter = (level1, level2) => {
 	let qaLvl = {
-		'sd': 1
-		, 'hd': 2
-		,'uhd': 3
+		'sd': 1,
+		'hd': 2,
+		'uhd': 3
 	}
-	return qaLvl[qa1] > qaLvl[qa2];
+	return qaLvl[level1] > qaLvl[level2];
 }
 
 let getBestQuality = (qualities) => {
 	return qualities.reduce((acc, elem) => {
-		if( !acc || isBetter(elem.level, acc.level)){
+		if (!acc || isBetter(elem.level, acc.level)) {
 			return elem;
 		}
 		return acc;
@@ -25,11 +25,7 @@ let getBestQuality = (qualities) => {
 };
 
 let getAvailableQualities = (qualities) => {
-	return qualities.filter((element, index) => {
-		if (element.availability === 'available') {
-			return true;
-		}
-	})
+	return qualities.filter((element) => element.availability === 'available')
 };
 
 data.forEach((channel) => {
@@ -40,11 +36,10 @@ data.forEach((channel) => {
 
 
 
-let chanels = data.reduce((acc, channel) => {
+let channels = data.reduce((acc, channel) => {
 	if (channel.bestAvailableQuality) {
 		if (
-			!acc[channel.id] 
-			|| 
+			!acc[channel.id] ||
 			isBetter(
 				channel.bestAvailableQuality.level,
 				acc[channel.id].bestAvailableQuality.level
@@ -58,7 +53,7 @@ let chanels = data.reduce((acc, channel) => {
 }, {});
 
 
-const channelsArray = Object.keys(chanels).map(key => chanels[key]);
+const channelsArray = Object.keys(channels).map(key => channels[key]);
 
 let isArrayEnd = (arr, index) => {
 	return index < 0 || index >= arr.length;
@@ -73,9 +68,9 @@ class App extends Component {
 		channelsArray: channelsArray
 	};
 
-	handleKey (e){
+	handleKey(e) {
 
-		if(e.keyCode === 40 && !isArrayEnd(channelsArray, this.state.focusedIndex + 2)) {
+		if (e.keyCode === 40 && !isArrayEnd(channelsArray, this.state.focusedIndex + 2)) {
 			let index = this.state.focusedIndex + 2;
 			this.setState({
 				focusedChannel: channelsArray[index].id,
@@ -83,35 +78,35 @@ class App extends Component {
 			});
 		}
 
-		if(e.keyCode === 38 && !isArrayEnd(channelsArray, this.state.focusedIndex - 2)) {
+		if (e.keyCode === 38 && !isArrayEnd(channelsArray, this.state.focusedIndex - 2)) {
 			let index = this.state.focusedIndex - 2;
 			this.setState({
 				focusedIndex: index
 			});
 		}
 
-		if(e.keyCode === 37 && !isArrayEnd(channelsArray, this.state.focusedIndex - 1)) {
-			let index = this.state.focusedIndex -1;
+		if (e.keyCode === 37 && !isArrayEnd(channelsArray, this.state.focusedIndex - 1)) {
+			let index = this.state.focusedIndex - 1;
 			this.setState({
 				focusedIndex: index
 			});
 		}
 
-		if(e.keyCode === 39 && !isArrayEnd(channelsArray, this.state.focusedIndex + 1)) {
+		if (e.keyCode === 39 && !isArrayEnd(channelsArray, this.state.focusedIndex + 1)) {
 			let index = this.state.focusedIndex + 1;
 			this.setState({
 				focusedIndex: index
 			});
 		}
 
-		if(e.keyCode === 13) {
+		if (e.keyCode === 13) {
 			let favorites = this.state.favorites;
 
-			if(this.state.channelsArray[this.state.focusedIndex].isSelected) {
+			if (this.state.channelsArray[this.state.focusedIndex].isSelected) {
 				favorites.delete(this.state.channelsArray[this.state.focusedIndex]);
 				delete this.state.channelsArray[this.state.focusedIndex].isSelected;
 
-			} else{
+			} else {
 				favorites = favorites.add(this.state.channelsArray[this.state.focusedIndex]);
 				this.state.channelsArray[this.state.focusedIndex].isSelected = true;
 			}
@@ -120,8 +115,6 @@ class App extends Component {
 				favorites: favorites,
 			});
 		}
-
-
 	}
 
 	componentDidMount() {
