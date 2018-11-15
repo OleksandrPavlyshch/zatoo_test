@@ -1,8 +1,7 @@
 import React from 'react';
 import classes from './Channel.css'
 
-const Channel = ( props ) => {
-	const { isFocused, isFavorite, channel, number } = props;
+const Channel = ({ isFocused, isFavorite, channel, number }) => {
 	return (
 		<div className={classes.Channel + ' ' + (isFocused ? classes.focused : '') + ' ' + (isFavorite ? 'col-12' : 'col-6')}>
 			<span className={classes.Channel_number}>

@@ -16,7 +16,6 @@ class App extends Component {
 		channels: []
 	};
 
-
 	isBetter(level1, level2) {
 		const qaLvl = {
 			'sd': 1,
@@ -64,11 +63,11 @@ class App extends Component {
 	}
 
 
-	handleKey(e) {
+	handleKey(event) {
 		let channels = this.state.channels,
 			focusedIndex = this.state.focusedIndex;
 
-		if (e.keyCode === ARROW_DOWN && !isArrayEnd(channels, focusedIndex + 2)) {
+		if (event.keyCode === ARROW_DOWN && !isArrayEnd(channels, focusedIndex + 2)) {
 			let index = focusedIndex + 2;
 			this.setState({
 				focusedChannel: channels[index].id,
@@ -76,28 +75,28 @@ class App extends Component {
 			});
 		}
 
-		if (e.keyCode === ARROW_UP && !isArrayEnd(channels, focusedIndex - 2)) {
+		if (event.keyCode === ARROW_UP && !isArrayEnd(channels, focusedIndex - 2)) {
 			let index = focusedIndex - 2;
 			this.setState({
 				focusedIndex: index
 			});
 		}
 
-		if (e.keyCode === ARROW_LEFT && !isArrayEnd(channels, focusedIndex - 1)) {
+		if (event.keyCode === ARROW_LEFT && !isArrayEnd(channels, focusedIndex - 1)) {
 			let index = focusedIndex - 1;
 			this.setState({
 				focusedIndex: index
 			});
 		}
 
-		if (e.keyCode === ARROW_RIGHT && !isArrayEnd(channels, focusedIndex + 1)) {
+		if (event.keyCode === ARROW_RIGHT && !isArrayEnd(channels, focusedIndex + 1)) {
 			let index = focusedIndex + 1;
 			this.setState({
 				focusedIndex: index
 			});
 		}
 
-		if (e.keyCode === ENTER) {
+		if (event.keyCode === ENTER) {
 			let favorites = this.state.favorites;
 
 			if (channels[focusedIndex].isSelected) {
@@ -148,6 +147,10 @@ class App extends Component {
 			</div>
 		);
 	}
+}
+
+App.propTypes = {
+
 }
 
 export default App;
